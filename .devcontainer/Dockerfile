@@ -1,7 +1,7 @@
 # .devcontainer/Dockerfile: Sets up the development container for the project.
 
 # Use the existing devcontainer image as the base
-FROM mcr.microsoft.com/devcontainers/javascript-node:20
+FROM mcr.microsoft.com/devcontainers/javascript-node:22
 
 # Set environment variable to non-interactive mode for apt-get installations
 ENV DEBIAN_FRONTEND=noninteractive

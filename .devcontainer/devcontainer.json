@@ -1,0 +1,79 @@
+{
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "catppuccin.catppuccin-vsc",
+        "catppuccin.catppuccin-vsc-icons",
+        "editorconfig.editorconfig",
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
+        "streetsidesoftware.code-spell-checker",
+        "github.copilot",
+        "github.copilot-chat",
+        "github.vscode-github-actions",
+        "github.vscode-pull-request-github",
+        "ms-azuretools.vscode-docker",
+        "ms-vscode-remote.remote-containers",
+        "redhat.vscode-yaml",
+        "shd101wyy.markdown-preview-enhanced"
+      ],
+      "settings": {
+        "[dockerfile]": {
+          "editor.rulers": [120]
+        },
+        "[javascript]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "[json]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "[markdown]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode",
+          "editor.rulers": [120]
+        },
+        "[yaml]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "cSpell.words": [
+          "autoupdate",
+          "autofix",
+          "azuretools",
+          "catppuccin",
+          "dbaeumer",
+          "devcontainer",
+          "devcontainers",
+          "dockerfiles",
+          "hadolint",
+          "Evgenii",
+          "esbenp",
+          "filesystems",
+          "Jekwwer",
+          "macchiato",
+          "markdownlint",
+          "shellcheck",
+          "Shiliaev"
+        ],
+        "editor.bracketPairColorization.enabled": true,
+        "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+        "editor.fontSize": 14,
+        "editor.formatOnPaste": true,
+        "editor.formatOnSave": true,
+        "editor.rulers": [88],
+        "files.autoSave": "afterDelay",
+        "files.autoSaveWhenNoErrors": true,
+        "markdown-preview-enhanced.previewTheme": "github-dark.css",
+        "npm.packageManager": "yarn",
+        "terminal.integrated.shell.linux": "/bin/bash",
+        "workbench.activityBar.location": "top",
+        "workbench.colorTheme": "Catppuccin Macchiato",
+        "workbench.iconTheme": "catppuccin-macchiato",
+        "yaml.format.enable": true
+      }
+    }
+  },
+  "name": "GitHub Actions Template",
+  "postStartCommand": "pre-commit install"
+}

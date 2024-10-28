@@ -8,10 +8,11 @@ ci:
   autoupdate_branch: "main"
   autoupdate_commit_msg: "[pre-commit.ci] pre-commit autoupdate"
   autoupdate_schedule: weekly
-  submodules: false
   skip:
     - autoupdate # ci can't run local hooks
-    - hadolint # ci doesn't have hadolint installed
+    - hadolint # ci can't install system dependencies
+    - eslint # ci can't find package 'globals'
+    - shellcheck-system # ci can't install system dependencies
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks

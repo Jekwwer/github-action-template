@@ -1,0 +1,15 @@
+# .github/actions/greeting-js/action.yml: Echos a greeting message using JavaScript.
+
+name: "Greeting Action (JavaScript)"
+description: "Outputs a greeting message using a JavaScript-based action."
+inputs:
+  name:
+    description: "Name of the person to greet"
+    required: true
+    default: "World"
+outputs:
+  greeting:
+    description: "The complete greeting message"
+runs:
+  using: "node20"
+  main: "index.cjs"

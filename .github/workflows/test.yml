@@ -1,0 +1,84 @@
+# .github/workflows/test.yml: Tests the Docker and JavaScript-based Greeting Actions.
+---
+name: "Test Actions Workflow"
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+env:
+  GREETING_NAME: "Evgenii"
+
+jobs:
+  test-greeting-docker:
+    name: "Test Docker Greeting Action"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Checkout Repository"
+        uses: actions/checkout@v4
+
+      - name: "Cache npm dependencies"
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+
+      - name: "Run Docker Greeting Action"
+        id: greet_docker
+        uses: ./.github/actions/greeting-docker
+        with:
+          name: "${{ env.GREETING_NAME }}"
+
+      - name: "Validate Docker Greeting Output"
+        run: |
+          echo "Validating output for docker action..."
+          if [[ "${{ steps.greet_docker.outputs.greeting }}" != *"Hello"* ]]; then
+            echo "Output validation failed for docker action."
+            exit 1
+          fi
+          echo "Greeting validation success: ${{ steps.greet_docker.outputs.greeting }}"
+
+  test-greeting-js:
+    name: "Test JavaScript Greeting Action"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Checkout Repository"
+        uses: actions/checkout@v4
+
+      - name: "Cache npm dependencies"
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+
+      - name: "Set up Node.js"
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: "Install dependencies"
+        run: npm install
+
+      - name: "Run JavaScript Greeting Action"
+        id: greet_js
+        uses: ./.github/actions/greeting-js
+        with:
+          name: "${{ env.GREETING_NAME }}"
+
+      - name: "Validate JavaScript Greeting Output"
+        run: |
+          echo "Validating output for js action..."
+          if [[ "${{ steps.greet_js.outputs.greeting }}" != *"Hello"* ]]; then
+            echo "Output validation failed for js action."
+            exit 1
+          fi
+          echo "Greeting validation success : ${{ steps.greet_js.outputs.greeting }}"

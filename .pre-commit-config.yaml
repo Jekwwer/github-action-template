@@ -2,11 +2,12 @@
 ---
 # Sets up CI to automatically update pre-commit hooks
 ci:
+  run_on_all_branches: true # ci runs on all branches and dependabot PRs
   autofix_commit_msg: |
     [pre-commit.ci] auto fixes from pre-commit hooks
   autofix_prs: true
   autoupdate_branch: "main"
-  autoupdate_commit_msg: "[pre-commit.ci] pre-commit autoupdate"
+  autoupdate_commit_msg: "deps: [pre-commit.ci] bump hooks"
   autoupdate_schedule: weekly
   skip:
     - autoupdate # ci can't run local hooks

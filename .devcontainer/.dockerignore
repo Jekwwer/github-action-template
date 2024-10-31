@@ -1,0 +1,35 @@
+# .devcontainer/.dockerignore:
+# Ignores files and directories that should not be copied into the container.
+
+# Node.js and Build Artifacts
+**/dist
+**/node_modules/
+.nyc_output
+yarn.lock
+
+# Coverage and Environment
+.coverage
+.coverage.*
+.env
+
+# Devcontainer
+.devcontainer
+
+# Configuration and Metadata
+.config.js
+.editorconfig
+.git
+.github
+.gitignore
+.pre-commit-config.yaml
+.vscode
+mkdocs.yml
+nycrc
+
+# Documentation
+docs
+*.md
+
+# Logs
+*.log
+junit.xml

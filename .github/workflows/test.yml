@@ -1,6 +1,6 @@
 # .github/workflows/test.yml: Tests the Docker and JavaScript-based Greeting Actions.
 ---
-name: "Test Actions Workflow"
+name: "Test Actions"
 on:
   push:
     branches:
@@ -21,13 +21,13 @@ jobs:
       - name: "Checkout Repository"
         uses: actions/checkout@v4
 
-      - name: "Cache npm dependencies"
+      - name: "Cache Yarn dependencies"
         uses: actions/cache@v4
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          path: ~/.yarn/cache
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-npm-
+            ${{ runner.os }}-yarn-
 
       - name: "Run Docker Greeting Action"
         id: greet_docker
@@ -52,13 +52,13 @@ jobs:
       - name: "Checkout Repository"
         uses: actions/checkout@v4
 
-      - name: "Cache npm dependencies"
+      - name: "Cache Yarn dependencies"
         uses: actions/cache@v4
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          path: ~/.yarn/cache
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-npm-
+            ${{ runner.os }}-yarn-
 
       - name: "Set up Node.js"
         uses: actions/setup-node@v4
@@ -66,7 +66,7 @@ jobs:
           node-version: "20"
 
       - name: "Install dependencies"
-        run: npm install
+        run: yarn install
 
       - name: "Run JavaScript Greeting Action"
         id: greet_js
@@ -81,4 +81,4 @@ jobs:
             echo "Output validation failed for js action."
             exit 1
           fi
-          echo "Greeting validation success : ${{ steps.greet_js.outputs.greeting }}"
+          echo "Greeting validation success: ${{ steps.greet_js.outputs.greeting }}"

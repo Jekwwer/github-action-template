@@ -1,6 +1,6 @@
 # .github/workflows/coverage.yml: Uploads the test coverage to Codecov.
 ---
-name: Upload Coverage Workflow
+name: "Upload Coverage"
 
 on:
   push:
@@ -21,6 +21,14 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
+
+      - name: Cache Node.js dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.yarn/cache
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
 
       - name: Install dependencies
         run: yarn install
